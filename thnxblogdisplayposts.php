@@ -228,10 +228,10 @@ class thnxblogdisplayposts extends Module implements WidgetInterface{
         						$this->context->controller->registerStylesheet(
         							$css_file['key'],
         							$theme_file_src ,
-        									[
+        									array(
         										'media' => $media,
         										'priority' => $priority
-        									]
+        									)
         						);
         					}
         				}else{
@@ -240,10 +240,10 @@ class thnxblogdisplayposts extends Module implements WidgetInterface{
         						$this->context->controller->registerStylesheet(
         							$css_file['key'],
         							$module_file_src ,
-        									[
+        									array(
         										'media' => $media,
         										'priority' => $priority
-        									]
+        									)
         						);
         					}
         				}
@@ -276,10 +276,10 @@ class thnxblogdisplayposts extends Module implements WidgetInterface{
 	        					$this->context->controller->registerJavascript(
 	        						$js_file['key'],
 	        						$theme_file_src,
-	        								[
+	        								array(
 	        									'position' => $position,
 	        									'priority' => $priority
-	        								]
+	        								)
 	        						);
 	        				}
 	        			}else{
@@ -288,10 +288,10 @@ class thnxblogdisplayposts extends Module implements WidgetInterface{
 		        				$this->context->controller->registerJavascript(
 		        					$js_file['key'],
 		        					$module_file_src ,
-		        							[
+		        							array(
 		        								'position' => $position,
 		        								'priority' => $priority
-		        							]
+		        							)
 		        					);
 	        				}
 	        			}
@@ -306,7 +306,7 @@ class thnxblogdisplayposts extends Module implements WidgetInterface{
 		$this->Register_Css();
 		$this->Register_Js();
 	}
-	public function renderWidget($hookName = null, array $configuration = [])
+	public function renderWidget($hookName = null, $configuration = array())
 	{
 		if(Module::isInstalled('thnxblog') && Module::isEnabled('thnxblog')){
 	    	$this->smarty->assign($this->getWidgetVariables($hookName,$configuration));
@@ -315,7 +315,7 @@ class thnxblogdisplayposts extends Module implements WidgetInterface{
 	    	return false;
 	    }	
 	}
-	public function getWidgetVariables($hookName = null, array $configuration = [])
+	public function getWidgetVariables($hookName = null, $configuration = array())
 	{
 	    if(Module::isInstalled('thnxblog') && Module::isEnabled('thnxblog')){
 		    $id_lang = (int)$this->context->language->id;
