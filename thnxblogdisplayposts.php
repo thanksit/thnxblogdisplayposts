@@ -298,7 +298,7 @@ class thnxblogdisplayposts extends Module implements WidgetInterface{
 		    $thnxbdp_numcolumn = Configuration::get('thnxbdp_numcolumn');
 		    Media::addJsDef(array('thnxbdp_numcolumn'=>$thnxbdp_numcolumn));
 		    $thnxblogposts = array();
-		    $thnxblogposts = thnxpostsclass::GetCategoryPosts(0,1,$thnxbdp_postcount,'post','DESC');
+		    $thnxblogposts = ThnxPostsClass::GetCategoryPosts(0,1,$thnxbdp_postcount,'post','DESC');
 		    return array(
 	    		'thnxbdp_title' => $thnxbdp_title,
 	    		'thnxbdp_subtext' => $thnxbdp_subtext,
