@@ -21,7 +21,8 @@ class ThnxBlogDisplayPosts extends Module implements WidgetInterface
             'load_theme' => false,
         ),
     );
-    public function __construct() {
+    public function __construct()
+    {
         $this->name = 'thnxblogdisplayposts';
         $this->tab = 'front_office_features';
         $this->version = '1.0.1';
@@ -34,34 +35,36 @@ class ThnxBlogDisplayPosts extends Module implements WidgetInterface
         $this->ps_versions_compliancy = array('min' => '1.7', 'max' => _PS_VERSION_);
     }
     // For installation service
-    public function install() {
+    public function install()
+    {
         if (!parent::install()
             || !$this->registerHook('displayHomeBottom')
             ) {
             return false;
         }
         $languages = Language::getLanguages(false);
-            foreach ($languages as $lang) {
-                Configuration::updateValue('thnxbdp_title_'.$lang['id_lang'], "News");
-                Configuration::updateValue('thnxbdp_subtext_'.$lang['id_lang'], "All Recent Posts From thnxBlog");
-            }
+        foreach ($languages as $lang) {
+            Configuration::updateValue('thnxbdp_title_'.$lang['id_lang'], "News");
+            Configuration::updateValue('thnxbdp_subtext_'.$lang['id_lang'], "All Recent Posts From thnxBlog");
+        }
             Configuration::updateValue('thnxbdp_postcount', 4);
             Configuration::updateValue('thnxbdp_designlayout', 'general');
             Configuration::updateValue('thnxbdp_numcolumn', 3);
             return true;
     }
     // For uninstallation service
-    public function uninstall() {
+    public function uninstall()
+    {
         if (!parent::uninstall()
             ) {
-            return false;
-        }
+            return false; }
         else {
             return true;
         }
     }
     // Helper Form for Html markup generate
-    public function SettingForm() {
+    public function SettingForm()
+    {
 
         $default_lang = (int) Configuration::get('PS_LANG_DEFAULT');
         $this->fields_form[0]['form'] = array(
@@ -170,24 +173,25 @@ class ThnxBlogDisplayPosts extends Module implements WidgetInterface
         $helper->toolbar_scroll = true;
         $helper->submit_action = 'save' . $this->name;
         $languages = Language::getLanguages(false);
-            foreach ($languages as $lang) {
-                $helper->fields_value['thnxbdp_title'][$lang['id_lang']] = Configuration::get('thnxbdp_title_'.$lang['id_lang']);
-                $helper->fields_value['thnxbdp_subtext'][$lang['id_lang']] = Configuration::get('thnxbdp_subtext_'.$lang['id_lang']);
-            }
+        foreach ($languages as $lang) {
+            $helper->fields_value['thnxbdp_title'][$lang['id_lang']] = Configuration::get('thnxbdp_title_'.$lang['id_lang']);
+            $helper->fields_value['thnxbdp_subtext'][$lang['id_lang']] = Configuration::get('thnxbdp_subtext_'.$lang['id_lang']);
+        }
             $helper->fields_value['thnxbdp_postcount'] = Configuration::get('thnxbdp_postcount');
             $helper->fields_value['thnxbdp_designlayout'] = Configuration::get('thnxbdp_designlayout');
             $helper->fields_value['thnxbdp_numcolumn'] = Configuration::get('thnxbdp_numcolumn');
         return $helper;
     }
     // All Functional Logic here.
-    public function getContent() {
+    public function getContent()
+    {
         $html = '';
         if (Tools::isSubmit('save' . $this->name)) {
             $languages = Language::getLanguages(false);
-               foreach ($languages as $lang) {
-                    Configuration::updateValue('thnxbdp_title_'.$lang['id_lang'], Tools::getvalue('thnxbdp_title_'.$lang['id_lang']));
-                    Configuration::updateValue('thnxbdp_subtext_'.$lang['id_lang'], Tools::getvalue('thnxbdp_subtext_'.$lang['id_lang']));
-               }
+            foreach ($languages as $lang) {
+                Configuration::updateValue('thnxbdp_title_'.$lang['id_lang'], Tools::getvalue('thnxbdp_title_'.$lang['id_lang']));
+                Configuration::updateValue('thnxbdp_subtext_'.$lang['id_lang'], Tools::getvalue('thnxbdp_subtext_'.$lang['id_lang']));
+            }
                 Configuration::updateValue('thnxbdp_postcount', Tools::getvalue('thnxbdp_postcount'));
                 Configuration::updateValue('thnxbdp_designlayout', Tools::getvalue('thnxbdp_designlayout'));
                 Configuration::updateValue('thnxbdp_numcolumn', Tools::getvalue('thnxbdp_numcolumn'));
@@ -196,7 +200,8 @@ class ThnxBlogDisplayPosts extends Module implements WidgetInterface
         $html .= $helper->generateForm($this->fields_form);
         return $html;
     }
-    public static function isEmptyFileContet($path = null) {
+    public static function isEmptyFileContet($path = null)
+    {
         if ($path == null) {
             return false;
         }
@@ -217,7 +222,7 @@ class ThnxBlogDisplayPosts extends Module implements WidgetInterface
             $theme_name = $this->context->shop->theme_name;
             $page_name = $this->context->controller->php_self;
             $root_path = _PS_ROOT_DIR_.'/';
-            foreach ($this->css_files as $css_file):
+            foreach ($this->css_files as $css_file) :
                 if (isset($css_file['key']) && !empty($css_file['key']) && isset($css_file['src']) && !empty($css_file['src'])) {
                     $media = (isset($css_file['media']) && !empty($css_file['media'])) ? $css_file['media'] : 'all';
                     $priority = (isset($css_file['priority']) && !empty($css_file['priority'])) ? $css_file['priority'] : 50;
@@ -251,7 +256,7 @@ class ThnxBlogDisplayPosts extends Module implements WidgetInterface
             $theme_name = $this->context->shop->theme_name;
             $page_name = $this->context->controller->php_self;
             $root_path = _PS_ROOT_DIR_.'/';
-            foreach ($this->js_files as $js_file):
+            foreach ($this->js_files as $js_file) :
                 if (isset($js_file['key']) && !empty($js_file['key']) && isset($js_file['src']) && !empty($js_file['src'])) {
                     $position = (isset($js_file['position']) && !empty($js_file['position'])) ? $js_file['position'] : 'bottom';
                     $priority = (isset($js_file['priority']) && !empty($js_file['priority'])) ? $js_file['priority'] : 50;
@@ -280,7 +285,8 @@ class ThnxBlogDisplayPosts extends Module implements WidgetInterface
         return true;
     }
     // Display Header Hook Execute Functions
-    public function hookdisplayheader($params) {
+    public function hookdisplayheader($params)
+    {
         $this->Register_Css();
         $this->Register_Js();
     }
@@ -291,7 +297,7 @@ class ThnxBlogDisplayPosts extends Module implements WidgetInterface
             return $this->fetch('module:'.$this->name.'/views/templates/front/'.$this->name.'.tpl');
         } else {
             return false;
-        } 
+        }
     }
     public function getWidgetVariables($hookName = null, array $configuration = [])
     {
