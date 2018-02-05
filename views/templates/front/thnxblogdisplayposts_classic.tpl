@@ -51,7 +51,7 @@
 					<div class="post_content col-sm-12 col-md-5 col-lg-6">
 
 						<div class="post_description">
-							{$thnxblgpst.post_content|escape:'html5':'UTF-8'|truncate:500:'...'}
+							{$thnxblgpst.post_content:'html5':'UTF-8'|truncate:500:'...'}
 
 							{* {if isset($thnxblgpst.post_excerpt) && !empty($thnxblgpst.post_excerpt)}
 								<p>{$thnxblgpst.post_excerpt|truncate:500:'...'|escape:'html':'UTF-8'}</p>
