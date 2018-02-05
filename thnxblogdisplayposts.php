@@ -57,7 +57,8 @@ class ThnxBlogDisplayPosts extends Module implements WidgetInterface
     {
         if (!parent::uninstall()
             ) {
-            return false; }
+            return false;
+        } 
         else {
             return true;
         }
